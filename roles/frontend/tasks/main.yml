@@ -1,18 +1,23 @@
-#  yum install nginx -y
+#yum install nginx -y
 
 - name: Install Nginx
   ansible.builtin.yum:
     name: nginx
     state: installed
 
-#    rm -rf /usr/share/nginx/html/*
+#rm -rf /usr/share/nginx/html/*
 
 - name: Remove old html content of nginx
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
 
-#    curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+- name: Create application directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+# curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 
 - name: Download and Extact frontend content
   ansible.builtin.unarchive:
