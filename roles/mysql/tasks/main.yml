@@ -1,3 +1,30 @@
-- name: print mysql
-  debug:
-    msg: mysql
+#CentOS-8 Comes with MySQL 8 Version by default, However our application needs MySQL 5.7. So lets disable MySQL 8 version. /etc/yum.repos.d/mysql.repo
+#Setup the MySQL5.7 repo file
+- name: Copy mysql repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+#dnf module disable mysql -y  #which comes inbuilt with centos 8
+- name: Disable mysql 8
+  ansible.builtin.shell: dnf module disable mysql -y
+
+#yum install mysql-community-server -y
+- name: Install mysql 5.7
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: installed
+
+#systemctl enable mysqld
+#systemctl start mysqld
+- name: Start mysql service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: installed
+    enabled: yes
+
+#mysql_secure_installation --set-root-pass RoboShop@1
+#mysql -uroot -pRoboShop@1
+- name: Set Root Password
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1
+  ignore_errors: yes
