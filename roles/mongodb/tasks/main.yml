@@ -1,3 +1,31 @@
-- name: print mongodb
-  debug:
-    msg: mongodb
+#Setup Mongo repo copy repo file to destination
+
+- name: SetUp MongoDB repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+
+#Install MongoDB
+
+- name: Install MongoDB
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+
+
+#Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf
+
+- name: Update MongoDB Listening Ports
+  ansible.builtin.replace:
+    path: /etc/mongo.conf
+    regexp: "127.0.0.1"
+    replace: "0.0.0.0"
+
+#Restart the service to make the changes effected.
+
+- name: Start MongoDB Service
+  ansible.builtin.systemd:
+    name: mongod
+    state: started
+    enable: true
