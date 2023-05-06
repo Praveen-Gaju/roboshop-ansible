@@ -1,2 +1,2 @@
 component: user
-schema-type: mongo
+schema_type: mongo
