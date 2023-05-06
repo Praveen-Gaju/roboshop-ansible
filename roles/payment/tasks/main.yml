@@ -1,3 +1,4 @@
-- name: print payment
-  debug:
-    msg: payment
+- name: Load python
+  ansible.builtin.import_roles:
+    name: common
+    tasks_from: python
