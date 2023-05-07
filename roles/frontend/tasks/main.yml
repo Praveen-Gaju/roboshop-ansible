@@ -31,7 +31,6 @@
   ansible.builtin.copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-    remote_src: yes
 
 #  systemctl restart nginx
 - name: Start Nginx Service
