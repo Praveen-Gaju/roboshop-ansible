@@ -13,7 +13,7 @@
     name:
       - erlang
       - rabbitmq-server
-    state: started
+    state: installed
 
 #systemctl enable rabbitmq-server
 #systemctl start rabbitmq-server
