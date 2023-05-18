@@ -11,7 +11,7 @@
 - name: Install erlang and rabbitmq
   ansible.builtin.yum:
     name:
-      - erlang-22.0.7-1
+      - erlang-25.3
       - rabbitmq-server
     state: installed
 
