@@ -27,6 +27,7 @@ scrape_configs:
           - name: "tag:Monitor"
             values: ["yes"]
 
+    #Name tag while for grafana identification
     relabel_configs:
     - source_labels: [__meta_ec2_tag_Name]
       target_label: name
