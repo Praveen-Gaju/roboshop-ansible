@@ -1,5 +1,5 @@
 groups:
-  - name: Roboshop - Service Alerts
+  - name: Roboshop Service Alerts
     rules:
     {% for component in components %}
 
