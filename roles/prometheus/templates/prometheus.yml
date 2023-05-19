@@ -13,8 +13,8 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-{% for component in components %}
-  - {{ alert_files }}
+{% for file in files %}
+  - {{ file }}
 {% endfor %}
 
 
