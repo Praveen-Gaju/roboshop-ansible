@@ -13,7 +13,11 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-  - alerts.yml
+{% for component in components %}
+  - {{ item }}
+{% endfor %}
+
+
 # - "first_rules.yml"
 # - "second_rules.yml"
 
