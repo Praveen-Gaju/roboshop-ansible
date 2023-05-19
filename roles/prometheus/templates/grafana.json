@@ -24,14 +24,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "zznoLsU4z"
+        "uid": "2Av5er84k"
       },
       "fieldConfig": {
         "defaults": {
@@ -72,7 +72,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 24,
         "x": 0,
         "y": 0
@@ -90,9 +90,6 @@
           "fields": "",
           "values": false
         },
-        "text": {
-          "titleSize": 15
-        },
         "textMode": "auto"
       },
       "pluginVersion": "8.5.6",
@@ -100,12 +97,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "up",
-          "instant": false,
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -117,7 +112,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "zznoLsU4z"
+        "uid": "2Av5er84k"
       },
       "fieldConfig": {
         "defaults": {
@@ -170,10 +165,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 14,
+        "h": 8,
+        "w": 12,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 4,
       "options": {
@@ -191,9 +186,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
-          "expr": "100- (avg by(name) (rate(node_cpu_seconds_total{mode=\"idle\"}[1m]))*100)",
+          "editorMode": "code",
+          "expr": "100 - (avg by (name) (rate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100 )",
+          "legendFormat": "{{name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -203,7 +201,96 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "zznoLsU4z"
+        "uid": "2Av5er84k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "2Av5er84k"
+          },
+          "editorMode": "code",
+          "expr": "100 - (((node_memory_Buffers_bytes + node_memory_Cached_bytes + node_memory_MemFree_bytes) / node_memory_MemTotal_bytes) * 100)",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory %",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "2Av5er84k"
       },
       "fieldConfig": {
         "defaults": {
@@ -215,12 +302,12 @@
               "options": {
                 "0": {
                   "color": "red",
-                  "index": 1,
+                  "index": 0,
                   "text": "Down"
                 },
                 "1": {
                   "color": "green",
-                  "index": 0,
+                  "index": 1,
                   "text": "UP"
                 }
               },
@@ -244,10 +331,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 10,
-        "x": 14,
-        "y": 5
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 12
       },
       "id": 8,
       "options": {
@@ -262,7 +349,9 @@
           "fields": "",
           "values": false
         },
-        "text": {},
+        "text": {
+          "titleSize": 20
+        },
         "textMode": "auto"
       },
       "pluginVersion": "8.5.6",
@@ -270,7 +359,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"cart.service\", state=\"active\"}",
@@ -281,7 +370,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"catalogue.service\", state=\"active\"}",
@@ -293,7 +382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"user.service\", state=\"active\"}",
@@ -305,7 +394,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"shipping.service\", state=\"active\"}",
@@ -317,7 +406,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"payment.service\", state=\"active\"}",
@@ -329,7 +418,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"dispatch.service\", state=\"active\"}",
@@ -341,7 +430,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "zznoLsU4z"
+            "uid": "2Av5er84k"
           },
           "editorMode": "code",
           "expr": "node_systemd_unit_state{exported_name=\"nginx.service\", state=\"active\"}",
@@ -353,98 +442,8 @@
       ],
       "title": "Service Status",
       "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "zznoLsU4z"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 14,
-        "x": 0,
-        "y": 14
-      },
-      "id": 6,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "zznoLsU4z"
-          },
-          "editorMode": "code",
-          "expr": "100-((node_memory_Buffers_bytes+node_memory_Cached_bytes+node_memory_MemFree_bytes)/node_memory_MemTotal_bytes * 100)",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Memory %",
-      "type": "timeseries"
     }
   ],
-  "refresh": false,
   "schemaVersion": 36,
   "style": "dark",
   "tags": [],
@@ -458,7 +457,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "RoboShop",
-  "uid": "MjQ42lUVz",
-  "version": 4,
+  "uid": "I860kj8Vz",
+  "version": 2,
   "weekStart": ""
 }
