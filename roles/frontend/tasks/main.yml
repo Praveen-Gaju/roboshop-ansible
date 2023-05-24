@@ -27,6 +27,12 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
+# configuration file is updated new log format is created
+- name: Create Nginx configuration
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 - name: Create Roboshop config in Nginx
   ansible.builtin.template:
     src: roboshop.conf
