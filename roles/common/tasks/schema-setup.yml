@@ -19,7 +19,7 @@
 
     - name: Load Schema
       #ansible.builtin.shell: mongo --host mongodb-dev.devopspract.online </app/schema/{{ component }}.js
-      ansible.builin.shell: mongo --ssl --host dev-docdb.cluster-cbvvy333yfwe.us-east-1.docdb.amazonaws.com:27017 --sslCAFile /app/us-east-1-bundle.pem --username admin1 --password <insertYourPassword>
+      ansible.builtin.shell: mongo --ssl --host dev-docdb.cluster-cbvvy333yfwe.us-east-1.docdb.amazonaws.com:27017 --sslCAFile /app/us-east-1-bundle.pem --username admin1 --password <insertYourPassword>
 
 
 - name: Mysql Schema
